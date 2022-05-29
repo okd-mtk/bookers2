@@ -1,0 +1,37 @@
+<% if flash[:notice] %>
+  <p class="notice01"><%= flash[:notice] %></p>
+<% end %>
+
+<div class="container px-5 px-sm-0">
+<div class="row">
+<%= render 'books/test', user: @user %>
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@user.id) do %>
+          <%= image_tag @user.get_profile_image(100,100) %><br>
+          <% end %>
+          <%= link_to @user.name, user_path(@user.id) %>
+        </td>
+
+        <td><%= link_to @book2.title, book_path(@book2.id) %></td>
+        <td><%= @book2.body %></td>
+
+        <td>
+          <% if @book2.user == current_user %>
+        <%= link_to "Edit", edit_book_path(@book2.id), class: "btn btn-sm btn-success" %>
+        </td>
+
+        <td>
+          <%= link_to "Destroy", book_path(@book2.id), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-sm btn-danger"%>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+</div>
